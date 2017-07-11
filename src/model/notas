@@ -1,0 +1,7 @@
+Página oficial de youtube-dl
+----------------------------
+http://rg3.github.io/youtube-dl/index.html
+
+Comando para bajar desde archivo
+--------------------------------
+youtube-dl --extract-audio --audio-format mp3 --batch-file=rutaDelArchivo

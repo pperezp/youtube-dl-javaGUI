@@ -20,8 +20,8 @@ public class App extends javax.swing.JFrame implements DataCopiedListener {
 
         tabUrl.setModel(new TM_URL(urls));
         this.setAlwaysOnTop(true);
-        
-        
+        this.setTitle("URL Copied");
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -84,7 +84,7 @@ public class App extends javax.swing.JFrame implements DataCopiedListener {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(opAOT)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -97,7 +97,7 @@ public class App extends javax.swing.JFrame implements DataCopiedListener {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(opAOT)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -133,15 +133,20 @@ public class App extends javax.swing.JFrame implements DataCopiedListener {
     }//GEN-LAST:event_tabUrlMouseClicked
 
     private void eliminarActionPerfermed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerfermed
-        System.out.println(tabUrl.getValueAt(tabUrl.getSelectedRow(), 0));
+        int[] rows = tabUrl.getSelectedRows();
+        
+        /*Recorro los índices de forma inversa, para ir borrando*/
+        for(int i=rows.length-1; i>=0; i--){
+            urls.remove(rows[i]);
+        }
+        
+        tabUrl.setModel(new TM_URL(urls));
     }//GEN-LAST:event_eliminarActionPerfermed
 
     public static void main(String args[]) {
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new App().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new App().setVisible(true);
         });
     }
 
